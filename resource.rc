@@ -1,0 +1,24 @@
+#include <windows.h>
+#include <commctrl.h>
+#include <richedit.h>
+#include "resource.h"
+
+// Dialogs
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+DLG_MAIN DIALOGEX 6, 5, 231, 122
+STYLE DS_3DLOOK | DS_CENTER | DS_SETFONT | WS_CAPTION | WS_VISIBLE | WS_GROUP | WS_THICKFRAME | WS_SYSMENU
+CAPTION "Clockio"
+FONT 8, "Tahoma", 0, 0, 1
+{
+    PUSHBUTTON      "Clock In", INBUTTON, 123, 7, 100, 30
+    PUSHBUTTON      "Clock Out", OUTBUTTON, 123, 42, 100, 30
+    LISTBOX         IDC_LIST1, 7, 7, 111, 102, WS_TABSTOP | WS_VSCROLL | LBS_NOTIFY | LBS_NOINTEGRALHEIGHT | LBS_SORT
+    PUSHBUTTON      "View Hours", VIEWHOURS, 123, 77, 100, 30
+}
+
+// Manifests
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+1                  RT_MANIFEST    "./manifest.xml"
+
+// Icons
+ICON1 ICON "./clock.ico"
