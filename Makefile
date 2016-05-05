@@ -1,6 +1,6 @@
 EXE=clockio.exe
-CFLAGS=-Wextra -Wall -std=c99
-LDFLAGS=-llctp -mwindows -lcomctl32
+CFLAGS=-Wextra -Wall -std=c99 `pkg-config --cflags lctp`
+LDFLAGS=-mwindows -lcomctl32 `pkg-config --libs lctp`
 
 SOURCES=$(wildcard *.c)
 RESOURCES=$(wildcard *.rc)
