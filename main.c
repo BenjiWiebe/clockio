@@ -8,6 +8,7 @@
 #include <lctp.h>
 #include "resource.h"
 #include "datafile.h"
+#include "find_datafiles.h"
 
 #ifdef _unused
 #undef _unused
@@ -19,7 +20,7 @@ HINSTANCE hInst;
 HWND listbox, buttonin, buttonout, buttonview, status;
 int currentemployee = -1;
 
-char *names[] = {"Employee 1", "Employee 2", NULL};
+char **names;
 
 BOOL CALLBACK DialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM _unused lParam)
 {
@@ -89,6 +90,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE _unused hPrevInstance, LPSTR
 	ic.dwSize = sizeof ic;
 	if(!InitCommonControlsEx(&ic))
 		return -1;
+	names = find_datafiles("C:\\ProgramData\\Clockio\\data\\");
+	if(names == NULL)
+	{
+		MessageBox(NULL, "Could not find employee data files!", "Error", MB_OK|MB_ICONERROR);
+		return 1;
+	}
 	// The user interface is a modal dialog box
 	INT_PTR p = DialogBox(hInstance, MAKEINTRESOURCE(DLG_MAIN), NULL, (DLGPROC)DialogProc);
 	return p;
